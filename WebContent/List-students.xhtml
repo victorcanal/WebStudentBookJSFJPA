@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+ xmlns:h="http://xmlns.jcp.org/jsf/html"
+ xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+	<meta charset="ISO-8859-1"/>
+	<title>List-students</title>
+	<link rel="icon" href="https://cdn.iconscout.com/icon/free/png-512/java-43-569305.png"/>
+	<link type = "text/css" rel = "stylesheet" href = "../css/list.css"/>
+	<link type = "text/css" rel = "stylesheet" href = "../css/global.css"/>
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{studentManager.loadStudents()}"/>
+	</f:metadata>
+</head>
+<body>
+	<nav>
+		<label>WebStudentBook JSFJPA</label>
+	</nav>
+	<ui:insert>
+		<h:form>
+			<h:dataTable border="1" value="#{studentManager.students}" var="tempStudent">
+				<h:column>
+					<f:facet name="header">ID</f:facet>
+					#{tempStudent.id}
+				</h:column>
+				<h:column>
+					<f:facet name="header">First Name</f:facet>
+					#{tempStudent.firstName}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Last Name</f:facet>
+					#{tempStudent.lastName}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Email</f:facet>
+					#{tempStudent.email}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Action</f:facet>
+					<h:commandButton value="Edit" action="#{studentManager.loadStudent(tempStudent.id)}" class="btn btn-primary btn-block btn-large"/>
+					<h:commandButton value="Delete" action="#{studentManager.deleteStudent(tempStudent.id)}" class="btn btn-primary btn-block btn-large"/>
+				</h:column>
+			</h:dataTable>
+			<h:commandButton value="Add" action="Add-student" class="btn btn-primary btn-block btn-large"/>
+		</h:form>
+	</ui:insert>
+</body>
+</html>

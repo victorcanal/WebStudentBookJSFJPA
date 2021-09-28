@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+ xmlns:h="http://xmlns.jcp.org/jsf/html"
+ xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+	<meta charset="ISO-8859-1"/>
+	<title>Add-student</title>
+	<link rel="icon" href="https://cdn.iconscout.com/icon/free/png-512/java-43-569305.png"/>
+	<link type = "text/css" rel = "stylesheet" href = "../css/add.css"/>
+	<link type = "text/css" rel = "stylesheet" href = "../css/global.css"/>
+</head>
+<body>
+	<nav>
+		<label>WebStudentBook JSFJPA</label>
+	</nav>
+	<ui:insert>
+		<h:form>
+			<table>
+				<tr>
+					<td>
+						<h:outputText value="First Name : "/>
+					</td>
+					<td>
+						<h:inputText id="firstname" value="#{student1.firstName}" required="true" requiredMessage="First name is required"/>
+						<h:message for="firstname" style="color:red"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h:outputText value="Last Name : "/>
+					</td>
+					<td>
+						<h:inputText id="lastname" value="#{student1.lastName}" required="true" requiredMessage="Last name is required"/>
+						<h:message for="lastname" style="color:red"/>						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h:outputText value="E-mail : "/>
+					</td>
+					<td>
+						<h:inputText id="email" value="#{student1.email}" required="true" requiredMessage="Email is required" validatorMessage="Invalid email format">
+							<f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+						</h:inputText>						
+						<h:message for="email" style="color:red"/>
+					</td>
+				</tr>
+			</table>
+			<h:commandButton value="Add" action="#{studentManager1.addStudent(student1)}" class="btn btn-primary btn-block btn-large"/>
+		</h:form>
+	</ui:insert>
+	<a href="List-students1.xhtml" class="cancel">Cancel</a>
+</body>
+</html>
